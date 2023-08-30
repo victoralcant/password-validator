@@ -14,7 +14,11 @@ public class Iteration2Password implements Password{
 
     @Override
     public boolean check() {
-        return password != null && password.length() > 16 && containsCapitalLetter() && containsLowerCase() && containsNumber();
+        return password != null && password.length() > 16
+                && containsCapitalLetter()
+                && containsLowerCase()
+                && containsNumber()
+                && containsUnderscore();
     }
 
     private boolean containsCapitalLetter() {
@@ -41,6 +45,16 @@ public class Iteration2Password implements Password{
         char[] chars = this.password.toCharArray();
         for (char c : chars) {
             if(isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsUnderscore() {
+        char[] chars = this.password.toCharArray();
+        for (char c : chars) {
+            if(c == '_') {
                 return true;
             }
         }
