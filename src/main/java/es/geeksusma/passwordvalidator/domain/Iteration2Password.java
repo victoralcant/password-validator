@@ -1,5 +1,6 @@
 package es.geeksusma.passwordvalidator.domain;
 
+import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
 
 public class Iteration2Password implements Password{
@@ -14,13 +15,23 @@ public class Iteration2Password implements Password{
 
     @Override
     public boolean check() {
-        return password != null && password.length() > 6 && containsCapitalLetter();
+        return password != null && password.length() > 6 && containsCapitalLetter() && containsLowerCase();
     }
 
     private boolean containsCapitalLetter() {
         char[] chars = this.password.toCharArray();
         for (char c : chars) {
             if(isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsLowerCase() {
+        char[] chars = this.password.toCharArray();
+        for (char c : chars) {
+            if(isLowerCase(c)) {
                 return true;
             }
         }
