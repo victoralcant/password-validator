@@ -1,15 +1,19 @@
 package es.geeksusma.passwordvalidator.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MediumPassword implements Password {
     private final String password;
 
     //They have something in common. They are all PasswordValidation.
-    private final CapitalLetterValidation capitalLetterValidation = new CapitalLetterValidation();
-    private final LowerCaseValidation lowerCaseValidation = new LowerCaseValidation();
-    private final NumberValidation numberValidation = new NumberValidation();
-    private final UnderscoreValidation underscoreValidation = new UnderscoreValidation();
+    private final List<PasswordValidator> validations = new ArrayList<>();
 
     private MediumPassword(String password) {
+        validations.add(new CapitalLetterValidation());
+        validations.add(new LowerCaseValidation());
+        validations.add(new NumberValidation());
+        validations.add(new UnderscoreValidation());
         this.password = password;
     }
 
@@ -19,10 +23,8 @@ public class MediumPassword implements Password {
 
     @Override
     public boolean check() {
-        return password != null && password.length() > 16
-                && capitalLetterValidation.containsCapitalLetter(this.password)
-                && lowerCaseValidation.containsLowerCase(this.password)
-                && numberValidation.containsNumber(this.password)
-                && underscoreValidation.containsUnderscore(this.password);
+        if (password == null) return false;
+        boolean allValidationsOk = validations.stream().allMatch(v -> v.validate(this.password));
+        return password.length() > 16 && allValidationsOk;
     }
 }
