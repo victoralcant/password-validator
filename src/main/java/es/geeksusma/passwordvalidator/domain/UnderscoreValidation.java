@@ -1,13 +1,9 @@
 package es.geeksusma.passwordvalidator.domain;
 
 public class UnderscoreValidation {
+    private static final char UNDERSCORE = '_';
+
     public boolean containsUnderscore(String password) {
-        char[] chars = password.toCharArray();
-        for (char c : chars) {
-            if (c == '_') {
-                return true;
-            }
-        }
-        return false;
+        return password.chars().anyMatch(c -> c == UNDERSCORE);
     }
 }
