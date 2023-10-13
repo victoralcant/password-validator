@@ -6,7 +6,6 @@ import java.util.List;
 public class MediumPassword implements Password {
     private final String password;
 
-    //They have something in common. They are all PasswordValidation.
     private final List<PasswordValidator> validations = new ArrayList<>();
 
     private MediumPassword(String password) {
@@ -14,6 +13,7 @@ public class MediumPassword implements Password {
         validations.add(new LowerCaseValidation());
         validations.add(new NumberValidation());
         validations.add(new UnderscoreValidation());
+        validations.add(new LengthGreaterThan16());
         this.password = password;
     }
 
@@ -24,7 +24,7 @@ public class MediumPassword implements Password {
     @Override
     public boolean check() {
         if (password == null) return false;
-        boolean allValidationsOk = validations.stream().allMatch(v -> v.validate(this.password));
-        return password.length() > 16 && allValidationsOk;
+        return validations.stream()
+                .allMatch(v -> v.validate(this.password));
     }
 }
