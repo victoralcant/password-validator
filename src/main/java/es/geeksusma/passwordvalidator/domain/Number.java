@@ -1,9 +1,11 @@
 package es.geeksusma.passwordvalidator.domain;
 
-public class NumberValidation implements PasswordValidator{
+import java.util.function.Predicate;
+
+public class Number implements Predicate<String> {
 
     @Override
-    public boolean validate(String password) {
+    public boolean test(String password) {
         return password.chars().anyMatch(Character::isDigit);
     }
 }

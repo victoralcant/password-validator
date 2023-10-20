@@ -1,9 +1,11 @@
 package es.geeksusma.passwordvalidator.domain;
 
-public class LowerCaseValidation implements PasswordValidator{
+import java.util.function.Predicate;
+
+public class LowerCase implements Predicate<String> {
 
     @Override
-    public boolean validate(String password) {
+    public boolean test(String password) {
         return password.chars().anyMatch(Character::isLowerCase);
     }
 }
