@@ -1,0 +1,5 @@
+- Feedbacks
+
+- Prefer use domain objects instead of primitives (wrapper of primitives)
+- Naming of the test would tell about the behaviour and not implementation details.
+- Remove the Predicates and use our own interfaces

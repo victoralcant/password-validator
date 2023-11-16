@@ -1,24 +1,26 @@
 package es.geeksusma.passwordvalidator.domain;
 
-import java.util.List;
+import es.geeksusma.passwordvalidator.domain.validations.*;
+
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class MediumPassword implements Password {
     private final String password;
 
     // default validations
-    private List<Predicate<String>> validations =
-            List.of(new LengthGreaterThan(16),
+    private Set<Predicate<String>> validations =
+            Set.of(new LengthGreaterThan(16),
                     new CapitalLetter(),
                     new LowerCase(),
-                    new Number(),
-                    new Underscore());
+                    new ContainsNumber(),
+                    new ContainsUnderscore());
 
     private MediumPassword(String password) {
         this.password = password;
     }
 
-    private MediumPassword(String password, List<Predicate<String>> validations) {
+    private MediumPassword(String password, Set<Predicate<String>> validations) {
         this.password = password;
         this.validations = validations;
     }
@@ -28,7 +30,7 @@ public class MediumPassword implements Password {
     }
 
     //Flexible password creation with validations
-    public static MediumPassword of(String password, List<Predicate<String>> validations) {
+    public static MediumPassword of(String password, Set<Predicate<String>> validations) {
         return new MediumPassword(password, validations);
     }
 

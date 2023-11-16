@@ -1,8 +1,8 @@
-package es.geeksusma.passwordvalidator.domain;
+package es.geeksusma.passwordvalidator.domain.validations;
 
 import java.util.function.Predicate;
 
-public class Underscore implements Predicate<String> {
+public class ContainsUnderscore implements Predicate<String> {
     private static final char UNDERSCORE_SYMBOL = '_';
 
     @Override

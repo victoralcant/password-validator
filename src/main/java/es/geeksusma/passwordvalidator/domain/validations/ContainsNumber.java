@@ -1,8 +1,8 @@
-package es.geeksusma.passwordvalidator.domain;
+package es.geeksusma.passwordvalidator.domain.validations;
 
 import java.util.function.Predicate;
 
-public class Number implements Predicate<String> {
+public class ContainsNumber implements Predicate<String> {
 
     @Override
     public boolean test(String password) {
