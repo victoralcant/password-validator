@@ -19,4 +19,11 @@ class ContainsUnderscoreTest {
         boolean isValid = validation.test("AnyPassword");
         assertThat(isValid).isFalse();
     }
+
+    @Test
+    void shouldReturnErrorMessage_whenPasswordValidationFail() {
+        var validation = new ContainsUnderscore();
+        var errorMessage = validation.validate("AnyPassword");
+        assertThat(errorMessage).contains("Password should contains an underscore _");
+    }
 }

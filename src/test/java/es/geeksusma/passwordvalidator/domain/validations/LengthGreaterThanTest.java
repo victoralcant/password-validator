@@ -23,5 +23,7 @@ class LengthGreaterThanTest {
     @Test
     void shouldReturnErrorMessage_whenValidationFail() {
         var validation = new LengthGreaterThan(6);
+        var errorMessage = validation.validate("pass");
+        assertThat(errorMessage).contains("Password length must be greater than 6");
     }
 }

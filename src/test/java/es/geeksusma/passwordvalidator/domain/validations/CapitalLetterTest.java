@@ -19,4 +19,11 @@ class CapitalLetterTest {
 
         assertThat(validation.test("Password")).isTrue();
     }
+
+    @Test
+    void shouldReturnErrorMessage_whenPasswordValidationFail() {
+        var validation = new CapitalLetter();
+        var errorMessage = validation.validate("password");
+        assertThat(errorMessage).contains("Password should contain a capital letter");
+    }
 }

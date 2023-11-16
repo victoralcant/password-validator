@@ -12,4 +12,11 @@ class ContainsNumberTest {
         boolean isValid = validation.test("AnyPassw0rd");
         assertThat(isValid).isTrue();
     }
+
+    @Test
+    void shouldReturnErrorMessage_whenPasswordValidationFail() {
+        ContainsNumber validation = new ContainsNumber();
+        var errorMessage = validation.validate("AnyPassword");
+        assertThat(errorMessage).contains("Password should contains a number");
+    }
 }

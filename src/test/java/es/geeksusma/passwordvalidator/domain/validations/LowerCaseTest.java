@@ -19,4 +19,11 @@ class LowerCaseTest {
         boolean isValid = validation.test("ANYPaSsWord");
         assertThat(isValid).isTrue();
     }
+
+    @Test
+    void shouldReturnErrorMessage_whenPasswordValidationFail() {
+        var validation = new LowerCase();
+        var errorMessage = validation.validate("ANYPASS");
+        assertThat(errorMessage).contains("Password should contains a lower case letter");
+    }
 }
